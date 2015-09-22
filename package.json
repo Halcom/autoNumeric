@@ -37,5 +37,14 @@
   "author": "Robert Knothe",
   "bugs": {
     "url": "https://github.com/BobKnothe/autoNumeric/issues"
+  },
+  "autoupdate": {
+    "source": "git",
+    "target": "git://github.com/BobKnothe/autoNumeric.git",
+    "basePath": "",
+    "files": [
+      "autoNumeric-min.js",
+      "autoNumeric.js"
+    ]
   }
 }
