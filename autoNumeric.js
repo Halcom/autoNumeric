@@ -1134,11 +1134,13 @@
                 }
                 /** allows locale decimal separator to be a comma */
                 if ((testValue === $this.attr('value') || testValue === $this.text()) && settings.runOnce === false) {
-                    if(settings.aSep && settings.aSep != null && settings.aSep != ''){ 
-						var re = new RegExp(settings.aSep, 'g');
+                    if(settings.aSep && settings.aSep != null && settings.aSep != ''){
+                        var separatorGroup = settings.aSep == "." ? "\\" + settings.aSep : settings.aSep;
+						var re = new RegExp(separatorGroup, 'g');
 						value = value.replace(re, '');
                 	}
-                    value = value.replace(settings.aDec, '.' );
+                    var separatorDecimal = settings.aDec == "." ? "\\" + settings.aDec : settings.aDec;
+                    value = value.replace(separatorDecimal, '.' );
                 }
                 if (!$.isNumeric(+value)) {
                     $.error("The value (" + value + ") being 'set' is not numeric and has caused a error to be thrown");
