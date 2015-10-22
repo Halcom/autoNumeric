@@ -1134,7 +1134,13 @@
                 }
                 /** allows locale decimal separator to be a comma */
                 if ((testValue === $this.attr('value') || testValue === $this.text()) && settings.runOnce === false) {
-                    value = value.replace(',', '.');
+                    if(settings.aSep && settings.aSep != null && settings.aSep != ''){
+                        var separatorGroup = settings.aSep == "." ? "\\" + settings.aSep : settings.aSep;
+						var re = new RegExp(separatorGroup, 'g');
+						value = value.replace(re, '');
+                	}
+                    var separatorDecimal = settings.aDec == "." ? "\\" + settings.aDec : settings.aDec;
+                    value = value.replace(separatorDecimal, '.' );
                 }
                 if (!$.isNumeric(+value)) {
                     $.error("The value (" + value + ") being 'set' is not numeric and has caused a error to be thrown");
@@ -1397,12 +1403,12 @@
          * value must be enclosed in quotes and use the period for the decimal point
          * value must be larger than vMin
          */
-        vMax: '9999999999999.99',
+		vMax: '999999999999999999.99',
         /** minimum possible value
          * value must be enclosed in quotes and use the period for the decimal point
          * value must be smaller than vMax
          */
-        vMin: '-9999999999999.99',
+        vMin: '-99999999999999999.99',
         /** max number of decimal places = used to override decimal places set by the vMin & vMax values
          * value must be enclosed in quotes example mDec: '3',
          * This can also set the value via a call back function mDec: 'css:#
